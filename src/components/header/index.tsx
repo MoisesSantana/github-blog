@@ -1,8 +1,12 @@
+import { HeaderContainer } from './style';
+
 export function Header() {
   return (
-    <div>
-      <img src="/logo.svg" alt="octocat do github personalizado" />
-      <h1>Header</h1>
-    </div>
+    <HeaderContainer>
+      <div>
+        <img src="/logo.svg" alt="octocat do github personalizado" />
+        <h1>GitHub Blog</h1>
+      </div>
+    </HeaderContainer>
   );
 }
