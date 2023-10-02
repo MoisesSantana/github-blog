@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    max-width: 1280px;
+    width: 80vw;
   }
 
   img {
