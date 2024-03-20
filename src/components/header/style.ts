@@ -2,15 +2,14 @@ import { styled } from 'styled-components';
 
 export const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme['base-profile']};
-  width: 100vw;
+  width: 100%;
   padding: 2rem 0;
 
   & > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: auto;
-    width: 80vw;
+    margin: auto 2rem;
   }
 
   img {
