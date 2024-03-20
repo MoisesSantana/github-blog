@@ -1,7 +1,8 @@
 import { Buildings, GithubLogo, Share, Users } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MyInfoContent, MyInfoFooter, MyInfoTitle, MyInfosContainer } from './style';
+import { MyInfoContent, MyInfoTitle } from './style';
+import { InfoFooter, InfosContainer } from '../../styles/infos-container';
 
 type User = {
   avatar_url: string;
@@ -29,7 +30,7 @@ export function MyInfos() {
   if (loading) return <p>Calma ai...</p>;
 
   return (
-    <MyInfosContainer>
+    <InfosContainer>
       <img src={ user.avatar_url } alt="moises santana" />
       <MyInfoContent>
         <div>
@@ -42,7 +43,7 @@ export function MyInfos() {
           </MyInfoTitle>
           <p>{user.bio}</p>
         </div>
-        <MyInfoFooter>
+        <InfoFooter>
           <div>
             <GithubLogo size={18} weight="fill" />
             <em>{user.login}</em>
@@ -59,8 +60,8 @@ export function MyInfos() {
               seguidores
             </em>
           </div>
-        </MyInfoFooter>
+        </InfoFooter>
       </MyInfoContent>
-    </MyInfosContainer>
+    </InfosContainer>
   );
 }

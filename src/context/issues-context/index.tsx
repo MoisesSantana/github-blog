@@ -1,10 +1,23 @@
 import { createContext, useState } from 'react';
 
+type User = {
+  avatar_url: string;
+  name: string;
+  html_url: string;
+  bio: string;
+  login: string;
+  company: string;
+  followers: number;
+}
+
 type IssueList = {
   id: number;
   title: string;
   body: string;
   created_at: string;
+  html_url: string;
+  comments: number;
+  user: User;
 };
 
 type Issues = {

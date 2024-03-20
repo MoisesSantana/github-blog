@@ -1,14 +1,14 @@
 import { MyInfos } from '../../components/my-infos';
 import { PostCards } from '../../components/post-cards';
 import { SearchBar } from '../../components/search-bar';
-import { BlogContainer } from './style';
+import { PageContainer } from '../../styles/page-container';
 
 export function Blog() {
   return (
-    <BlogContainer>
+    <PageContainer>
       <MyInfos />
       <SearchBar />
       <PostCards />
-    </BlogContainer>
+    </PageContainer>
   );
 }

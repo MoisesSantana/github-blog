@@ -3,7 +3,6 @@ import { SearchBarContainer } from './style';
 import { IssuesContext } from '../../context/issues-context';
 
 export function SearchBar() {
-  // const [issues, setIssues] = useState({} as Issues);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const { updateIssues, issues } = useContext(IssuesContext);
@@ -15,7 +14,6 @@ export function SearchBar() {
   async function searchIssues() {
     const response = await fetch(`https://api.github.com/search/issues?q=${search}%20repo:moisessantana/github-blog`);
     const data = await response.json();
-    console.log(data);
     updateIssues(data);
     setLoading(false);
   }

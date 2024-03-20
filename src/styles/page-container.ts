@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
 
-export const BlogContainer = styled.main`
+export const PageContainer = styled.main`
   width: 60%;
 `;

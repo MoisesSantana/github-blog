@@ -1,7 +1,12 @@
+import { PostContent } from '../../components/post-content';
+import { PostInfos } from '../../components/post-infos';
+import { PageContainer } from '../../styles/page-container';
+
 export function Posts() {
   return (
-    <div>
-      <h1>Posts</h1>
-    </div>
+    <PageContainer>
+      <PostInfos />
+      <PostContent />
+    </PageContainer>
   );
 }

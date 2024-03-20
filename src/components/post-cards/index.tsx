@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { IssuesContext } from '../../context/issues-context';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -30,7 +30,7 @@ export function PostCards() {
         const textWithoutImage = item.body.replace(regex, '');
 
         return (
-          <CardContainer to={`post/${item.id}`} bgImage={ bgUrl } title={item.title} key={item.id}>
+          <CardContainer to={`post/${item.title}`} bgImage={ bgUrl } title={item.title} key={item.id}>
             <div className="blur" />
             <div className='title'>
               <span>{item.title}</span>
