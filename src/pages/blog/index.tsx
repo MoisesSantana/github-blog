@@ -1,14 +1,12 @@
-// import { Xablau } from '../../components/xablau';
+import { MyInfos } from '../../components/my-infos';
+import { SearchBar } from '../../components/search-bar';
+import { BlogContainer } from './style';
 
 export function Blog() {
   return (
-    <div>
-      <h1>Blog</h1>
-      {/* <Xablau> */}
-      <h1>Teste</h1>
-      <p>blablabla</p>
-      <span>blublublu</span>
-      {/* </Xablau> */}
-    </div>
+    <BlogContainer>
+      <MyInfos />
+      <SearchBar />
+    </BlogContainer>
   );
 }

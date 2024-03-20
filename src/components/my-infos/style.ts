@@ -13,7 +13,7 @@ export const MyInfosContainer = styled.section`
   & img {
     width: 10rem;
     height: 10rem;
-    border-radius: 50%;
+    border-radius: 8px;
     border: 2px solid #3294F8;
   }
 `;
@@ -22,7 +22,7 @@ export const MyInfoContent = styled.div`
   display: flex;
   flex-direction: column;
   height: 10rem;
-  width: 25rem;
+  width: 100%;
   justify-content: space-between;
 `;
 
@@ -33,7 +33,6 @@ export const MyInfoTitle = styled.div`
   margin-bottom: 1rem;
 
   & h1 {
-    font-family: 'Nunito', sans-serif;
     color: #E7EDF4;
   }
 
@@ -57,5 +56,9 @@ export const MyInfoFooter = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+
+    & em {
+      font-style: normal;
+    }
   }
 `;
