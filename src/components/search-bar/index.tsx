@@ -1,31 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { SearchBarContainer } from './style';
+import { useFetch } from '../../hooks/useGHFetch';
 import { IssuesContext } from '../../context/issues-context';
 
 export function SearchBar() {
-  const [loading, setLoading] = useState(true);
+  const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
-  const { updateIssues, issues } = useContext(IssuesContext);
+  const { updateIssues } = useContext(IssuesContext);
 
-  useEffect(() => {
-    searchIssues();
-  }, []);
+  const { data, isLoading } = useFetch(`search/issues?q=${search}%20repo:moisessantana/github-blog`);
 
-  async function searchIssues() {
-    const response = await fetch(`https://api.github.com/search/issues?q=${search}%20repo:moisessantana/github-blog`);
-    const data = await response.json();
-    updateIssues(data);
-    setLoading(false);
-  }
+  if (isLoading) return <p>Calma ai...</p>;
 
-  if (loading) return <p>Calma ai...</p>;
+  updateIssues(data);
 
   return (
     <SearchBarContainer>
       <div>
         <span>Publicações</span>
         <span>
-          {issues.total_count}
+          {data.total_count}
           {' '}
           publicações
         </span>
@@ -33,13 +27,14 @@ export function SearchBar() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          searchIssues();
+          setSearch(inputValue);
+          setInputValue('');
         }}
       >
         <input
           type="text"
           placeholder="Buscar conteúdo..."
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
         />
         <button>Buscar</button>
       </form>

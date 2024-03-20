@@ -1,31 +1,23 @@
 import { Calendar, CaretLeft, GithubLogo, Share, Users } from 'phosphor-react';
-import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { InfoFooter, InfosContainer } from '../../styles/infos-container';
 import { MyInfoContent } from './style';
-import { IssuesContext } from '../../context/issues-context';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { useFetch } from '../../hooks/useGHFetch';
+import { useContext } from 'react';
+import { IssuesContext } from '../../context/issues-context';
 
 export function PostInfos() {
-  const [loading, setLoading] = useState(true);
-  const { issues, updateIssues } = useContext(IssuesContext);
+  const { updateIssues } = useContext(IssuesContext);
   const params = useParams();
   const { slug } = params;
 
-  async function searchIssues() {
-    const response = await fetch(`https://api.github.com/search/issues?q=${slug}%20repo:moisessantana/github-blog`);
-    const data = await response.json();
-    updateIssues(data);
-    setLoading(false);
-  }
+  const { data, isLoading } = useFetch(`search/issues?q=${slug}%20repo:moisessantana/github-blog`);
 
-  useEffect(() => {
-    searchIssues();
-  }, []);
-
-  if (loading || issues.total_count !== 1) return <p>Calma ai...</p>;
-  const [issue] = issues.items;
+  if (isLoading || data.total_count !== 1) return <p>Calma ai...</p>;
+  const [issue] = data.items;
+  updateIssues(data);
 
   const formatedDate = format(
     issue.created_at,
