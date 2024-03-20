@@ -1,12 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from '../components/header';
 import { LayoutContainer } from './style';
+import { IssuesProvider } from '../context/issues-context';
 
 export function DefaultLayout() {
   return (
-    <LayoutContainer>
-      <Header />
-      <Outlet />
-    </LayoutContainer>
+    <IssuesProvider>
+      <LayoutContainer>
+        <Header />
+        <Outlet />
+      </LayoutContainer>
+    </IssuesProvider>
   );
 }

@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SearchBarContainer } from './style';
-
-type Issues = {
-  total_count: number;
-}
+import { IssuesContext } from '../../context/issues-context';
 
 export function SearchBar() {
-  const [issues, setIssues] = useState({} as Issues);
+  // const [issues, setIssues] = useState({} as Issues);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const { updateIssues, issues } = useContext(IssuesContext);
 
   useEffect(() => {
     searchIssues();
@@ -18,7 +16,7 @@ export function SearchBar() {
     const response = await fetch(`https://api.github.com/search/issues?q=${search}%20repo:moisessantana/github-blog`);
     const data = await response.json();
     console.log(data);
-    setIssues(data);
+    updateIssues(data);
     setLoading(false);
   }
 
