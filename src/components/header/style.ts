@@ -1,25 +1,17 @@
 import { styled } from 'styled-components';
 
-export const HeaderContainer = styled.header`
+interface HeaderProps {
+  responsive: string;
+}
+
+export const HeaderContainer = styled.header<HeaderProps>`
   background-color: ${({ theme }) => theme['base-profile']};
   width: 100%;
-  padding: 2rem 0;
-
-  & > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto 2rem;
-  }
+  padding: ${({ responsive }) => responsive !== 'desktop' ? '2rem 0 10rem' : '2rem 0'};
+  display: flex;
+  justify-content: ${({ responsive }) => responsive !== 'desktop' ? 'center' : 'flex-start'};
 
   img {
     height: 150px;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    color: ${({ theme }) => theme.blue};
-    font-family: 'Coda', cursive;
   }
 `;

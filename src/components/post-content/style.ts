@@ -33,6 +33,7 @@ export const PostContentContainer = styled.article`
     margin: 1rem 0 2rem;
     padding: 2rem;
     color: #3294F8;
+    overflow-x: auto;
   }
 
   & blockquote {

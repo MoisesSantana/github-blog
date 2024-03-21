@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface InfoFooterProps {
+  responsive: string;
+}
+
 export const InfosContainer = styled.section`
   transform: translateY(-50%);
   background-color: #0B1B2B;
@@ -18,9 +22,11 @@ export const InfosContainer = styled.section`
   }
 `;
 
-export const InfoFooter = styled.div`
+export const InfoFooter = styled.div<InfoFooterProps>`
   display: flex;
-  gap: 2rem;
+  gap: ${({ responsive }) => responsive === 'mobile' ? '8px' : '2rem'};
+  flex-direction: ${({ responsive }) => responsive === 'mobile' ? 'column' : 'row'};
+  margin-top: ${({ responsive }) => responsive === 'mobile' ? '1rem' : '0'};
 
   & div {
     display: flex;

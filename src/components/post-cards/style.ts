@@ -5,11 +5,15 @@ interface CardContainerProps {
   bgImage: string | null;
 }
 
-export const PostCardsContainer = styled.section`
+interface PostCardsContainerProps {
+  justOneCard: boolean;
+}
+
+export const PostCardsContainer = styled.section<PostCardsContainerProps>`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: ${({ justOneCard }) => justOneCard ? 'repeat(1, 1fr)' : 'repeat(2, 1fr)'};
   gap: 2rem;
-  margin-top: 3rem;
+  margin: 3rem 0;
 `;
 
 const StyledLink = styled(Link)`

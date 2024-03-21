@@ -4,16 +4,19 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { CardContainer, PostCardsContainer } from './style';
 import ReactMarkdown from 'react-markdown';
+import { useResponsive } from '../../hooks/useResponsive';
 
 export function PostCards() {
   const { issues } = useContext(IssuesContext);
+  const { responsive } = useResponsive();
+  const justOneCard = responsive === 'mobile' || responsive === 'tablet';
 
   const { items } = issues;
 
   if (!items) return <p>Calma ai...</p>;
 
   return (
-    <PostCardsContainer>
+    <PostCardsContainer justOneCard={justOneCard}>
       {items.map((item) => {
         const formatedDate = format(
           item.created_at,
@@ -30,7 +33,12 @@ export function PostCards() {
         const textWithoutImage = item.body.replace(regex, '');
 
         return (
-          <CardContainer to={`post/${item.title}`} bgImage={ bgUrl } title={item.title} key={item.id}>
+          <CardContainer
+            to={`post/${item.title}`}
+            bgImage={ bgUrl }
+            title={item.title}
+            key={item.id}
+          >
             <div className="blur" />
             <div className='title'>
               <span>{item.title}</span>

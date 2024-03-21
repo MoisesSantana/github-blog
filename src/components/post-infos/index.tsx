@@ -1,17 +1,19 @@
 import { Calendar, CaretLeft, GithubLogo, Share, Users } from 'phosphor-react';
 import { Link, useParams } from 'react-router-dom';
 import { InfoFooter, InfosContainer } from '../../styles/infos-container';
-import { MyInfoContent } from './style';
+import { PostInfoContent } from './style';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useFetch } from '../../hooks/useGHFetch';
 import { useContext } from 'react';
 import { IssuesContext } from '../../context/issues-context';
+import { useResponsive } from '../../hooks/useResponsive';
 
 export function PostInfos() {
   const { updateIssues } = useContext(IssuesContext);
   const params = useParams();
   const { slug } = params;
+  const { responsive } = useResponsive();
 
   const { data, isLoading } = useFetch(`search/issues?q=${slug}%20repo:moisessantana/github-blog`);
 
@@ -29,7 +31,7 @@ export function PostInfos() {
 
   return (
     <InfosContainer>
-      <MyInfoContent>
+      <PostInfoContent>
         <header>
           <Link to="/">
             <CaretLeft size={16} />
@@ -43,7 +45,7 @@ export function PostInfos() {
           </div>
         </header>
         <h1>{issue.title}</h1>
-        <InfoFooter>
+        <InfoFooter responsive={responsive}>
           <div>
             <GithubLogo size={18} weight="fill" />
             <em>{issue.user.login}</em>
@@ -66,7 +68,7 @@ export function PostInfos() {
             </em>
           </div>
         </InfoFooter>
-      </MyInfoContent>
+      </PostInfoContent>
     </InfosContainer>
   );
 }

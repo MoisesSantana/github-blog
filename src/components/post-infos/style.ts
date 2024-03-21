@@ -1,9 +1,8 @@
 import { styled } from 'styled-components';
 
-export const MyInfoContent = styled.div`
+export const PostInfoContent = styled.div`
   display: flex;
   flex-direction: column;
-  height: 10rem;
   width: 100%;
   justify-content: space-between;
 

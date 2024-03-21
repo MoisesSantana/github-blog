@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import { MyInfoContent, MyInfoTitle } from './style';
 import { InfoFooter, InfosContainer } from '../../styles/infos-container';
 import { useFetch } from '../../hooks/useGHFetch';
+import { useResponsive } from '../../hooks/useResponsive';
 
 export function MyInfos() {
   const { data, isLoading } = useFetch('users/moisessantana');
+  const { responsive } = useResponsive();
+  const showImg = responsive !== 'mobile' && responsive !== 'tablet';
 
   if (isLoading) return <p>Calma ai...</p>;
-  console.log(data);
 
   return (
     <InfosContainer>
-      <img src={ data.avatar_url } alt="moises santana" />
+      {showImg && <img src={ data.avatar_url } alt="moises santana" />}
       <MyInfoContent>
         <div>
           <MyInfoTitle>
@@ -24,7 +26,7 @@ export function MyInfos() {
           </MyInfoTitle>
           <p>{data.bio}</p>
         </div>
-        <InfoFooter>
+        <InfoFooter responsive={responsive}>
           <div>
             <GithubLogo size={18} weight="fill" />
             <em>{data.login}</em>

@@ -1,5 +1,9 @@
 import { styled } from 'styled-components';
 
-export const PageContainer = styled.main`
-  width: 60%;
+interface PageContainerProps {
+  responsive: string;
+}
+
+export const PageContainer = styled.main<PageContainerProps>`
+  width: ${({ responsive }) => responsive !== 'desktop' ? '90%' : '60%'};
 `;
